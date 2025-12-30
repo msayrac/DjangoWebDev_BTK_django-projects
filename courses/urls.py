@@ -12,5 +12,6 @@ urlpatterns =[
     path('iletisim',views.iletisim),
     path('hakkimizda',views.hakkimizda),
     path('kurslar',views.kurslar),
+    path('referanslar',views.referanslar),
 ]
 

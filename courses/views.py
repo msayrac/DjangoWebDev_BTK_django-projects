@@ -15,3 +15,6 @@ def iletisim(request):
 
 def hakkimizda(request):
     return HttpResponse("hakkimizda Sayfası")
+
+def referanslar(request):
+    return HttpResponse("referanslar sayfası")
