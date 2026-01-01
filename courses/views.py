@@ -4,15 +4,15 @@ from django.shortcuts import render
 # Create your views here.
 # eklenen metodlar view olarak adlandırılıyoru
 
-def home(request):
-    return HttpResponse("anasayfa")
-
 def kurslar(request):
     return HttpResponse("kurs listesi")
 
-def iletisim(request):
-    return HttpResponse("İletisim sayfası")
+def programlama(request):
+    return HttpResponse("programlama kursları")
 
-def hakkimizda(request):
-    return HttpResponse("hakkimizda Sayfası")
+def mobilUygulamalar(request):
+    return HttpResponse("mobil uygulama kursları")
+
+def details(request):
+    return HttpResponse("kurs detay sayfası")
 
