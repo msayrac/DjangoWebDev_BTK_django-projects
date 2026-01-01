@@ -9,9 +9,8 @@ from courses import views
 urlpatterns =[
     path('',views.kurslar),    
     path('list',views.kurslar),
-    path('details',views.details),
-    path('programlama',views.programlama),
-    path('mobil-uygulamalar',views.mobilUygulamalar),
-    
+    path('details',views.details),        
+    path('<category>',views.getCoursesByCategory), # urls dynamic hale getirilir.    
+
 ]
 
