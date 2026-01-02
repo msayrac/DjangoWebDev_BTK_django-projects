@@ -7,19 +7,22 @@ from django.shortcuts import render
 def kurslar(request):
     return HttpResponse("kurs listesi")
 
-def details(request):
-    return HttpResponse("kurs detay sayfası")
+def details(request,kurs_adi):
+    return HttpResponse(f"{kurs_adi} kursu detay sayfası")
 
-def getCoursesByCategory(request,category):
+def getCoursesByCategory(request,category_name):
     text = ""
 
-    if(category == 'programlama'):
-        text = 'programlama'
-    elif(category == 'web-gelistirme'):
-        text = 'web-gelistirme'
+    if(category_name == 'programlama'):
+        text = 'programlama kategorisinde ait kurs listesi'
+    elif(category_name == 'web-gelistirme'):
+        text = 'web-gelistirme kategorisinde ait kurs listesi'
     else:
         text = 'bilinmeyen kategori'
 
-    return HttpResponse(f"{text} kategorisinde ait kurs listesi")
+    return HttpResponse(text)
 
- 
+def getCoursesByCategoryId(request,category_id):
+    
+    return HttpResponse(category_id)
+
