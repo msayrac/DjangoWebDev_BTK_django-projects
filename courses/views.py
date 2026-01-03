@@ -1,6 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound,HttpResponseRedirect
+from django.shortcuts import redirect, render
 
+data ={
+    'programlama': "programlama kategorisinde ait kurs listesi",
+    'web-gelistirme': "web gelistirme kategorisinde ait kurs listesi",
+    'mobil': "mobil kategorisinde ait kurs listesi",
+}
 # Create your views here.
 # eklenen metodlar view olarak adlandırılıyoru
 
@@ -11,18 +16,20 @@ def details(request,kurs_adi):
     return HttpResponse(f"{kurs_adi} kursu detay sayfası")
 
 def getCoursesByCategory(request,category_name):
-    text = ""
+    try:
+        category_text = data[category_name]
+        return HttpResponse(category_text)
+    except:
+        return HttpResponseNotFound("yanlış kategori seçimi")
 
-    if(category_name == 'programlama'):
-        text = 'programlama kategorisinde ait kurs listesi'
-    elif(category_name == 'web-gelistirme'):
-        text = 'web-gelistirme kategorisinde ait kurs listesi'
+def getCoursesByCategoryId(request,category_id):    
+    # return HttpResponseRedirect('/kurs/kategori/programlama')
+    category_list = list(data.keys())
+    if(category_id > len(category_list)):
+       return HttpResponseNotFound("yanlış kategori secimi")
     else:
-        text = 'bilinmeyen kategori'
+        redirect_text = category_list[category_id -1]
+        return redirect('/kurs/kategori/' +redirect_text) # short cut method instead of HttpResponseRedirect we use redirect
 
-    return HttpResponse(text)
-
-def getCoursesByCategoryId(request,category_id):
     
-    return HttpResponse(category_id)
 
