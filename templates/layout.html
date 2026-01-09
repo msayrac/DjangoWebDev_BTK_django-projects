@@ -7,6 +7,7 @@
 
     {% block css_files %}{% endblock %}
 
+    
 
     <title> CourseApp | {% block page_title %} {% endblock page_title %}        
     </title>
@@ -15,49 +16,13 @@
 <body>
     
     {% comment %} <navbar> {% endcomment %}
-    <nav class="navbar navbar-expand-lg bg-danger navbar-dark">       
-        <div class="container">
-            <a href="/" class="navbar-brand">Course App</a>
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Kurslar</a>
-                </li>
+    {% include "partials/_nav.html" %}
+        
+     {% comment %} <Content> {% endcomment %}
 
-                <li class="nav-item">
-                    <a href="/contact" class="nav-link">İletişim</a>
-                </li>
+    {% block content %}{% endblock content%}  
 
-                <li class="nav-item">
-                    <a href="/about" class="nav-link">Hakkımızda</a>
-                </li>                
-            </ul>
-        </div>
-    </nav>        
-
-        <div class="container mt-3">
-
-            <div class="row">
-                <div class="col-3">
-                    {% comment %} <menu> {% endcomment %}
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Programlama</a>
-                        <a href="#" class="list-group-item list-group-item-action">Web Gelistirme</a>
-                        <a href="#" class="list-group-item list-group-item-action">Mobil Geliştirme</a>
-                    </div>
-
-                </div>
-
-                <div class="col-9">
-                    {% comment %} <Content> {% endcomment %}
-
-                    {% comment %} burdaki content blokları dinamik şekilde farklı html sayfaları ile eşleşecektir. {% endcomment %}
-
-                    {% block content %}{% endblock content%}   
-
-                </div>
-            </div>
-
-        </div>
+       
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/js/bootstrap.min.js"></script>
 
