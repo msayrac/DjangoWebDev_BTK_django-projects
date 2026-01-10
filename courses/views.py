@@ -32,7 +32,10 @@ def details(request,kurs_adi):
 def getCoursesByCategory(request,category_name):
     try:
         category_text = data[category_name]
-        return HttpResponse(category_text)
+        return render(request,'courses/kurslar.html', {
+            'category': category_name,
+            'category_text': category_text
+        })
     except:
         return HttpResponseNotFound("<h1>yanlış kategori seçimi</h1>")
 
