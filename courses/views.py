@@ -7,24 +7,18 @@ data ={
     'programlama': "programlama kategorisinde ait kurs listesi",
     'web-gelistirme': "web gelistirme kategorisinde ait kurs listesi",
     'mobil': "mobil kategorisinde ait kurs listesi",
+    '.Net': ".Net kategorisinde ait kurs listesi",
+    'R': "R kategorisinde ait kurs listesi",
 }
 # Create your views here.
 # eklenen metodlar view olarak adlandırılıyoru
 
 def index(request):
-    return render(request,'courses/index.html')
-
-def kurslar(request):
-    list_items = ""
     category_list = list(data.keys())
 
-    for category in category_list:
-        redirect_url = reverse('courses_by_category',args=[category])
-        list_items += f"<li><a href='{redirect_url}'>{category}</a></li>"
-    
-    html = f"<h1>Kurslar listesi</h1><br><ul>{list_items}</ul>"
-
-    return HttpResponse(html)
+    return render(request,'courses/index.html',{
+        'categories': category_list
+    })
 
 def details(request,kurs_adi):
     return HttpResponse(f"{kurs_adi} kursu detay sayfası")
