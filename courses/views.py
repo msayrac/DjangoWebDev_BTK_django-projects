@@ -1,3 +1,4 @@
+from datetime import date
 from django.http import HttpResponse, HttpResponseNotFound,HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -9,6 +10,35 @@ data ={
     'mobil': "mobil kategorisinde ait kurs listesi",
     '.Net': ".Net kategorisinde ait kurs listesi",
     'R': "R kategorisinde ait kurs listesi",
+}
+
+db = {
+    'courses' : [
+        {"title": "javascript kursu",
+         "description": "javascript kurs aciklaması",
+         "imageUrl": "https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
+         "slug":"javascript-kursu",
+         "date": date(2025,10,10),
+         "is-active": True     
+         },         
+
+         {"title": "python kursu",
+         "description": "python kurs aciklaması",
+         "imageUrl": "https://img-c.udemycdn.com/course/750x422/1258436_2dc3_4.jpg",
+         "slug":"python-kursu",
+         "date": date(2025,12,10),
+         "is-active": False             
+         },
+
+         {"title": "web gelistirme kursu",
+         "description": "web gelistirme kurs aciklaması",
+         "imageUrl": "https://img-c.udemycdn.com/course/750x422/2463492_8344_3.jpg",
+         "slug":"web-gelistirme-kursu",
+         "date": date(2026,1,15),
+         "is-active": True             
+         },
+    ],
+    "categories": ["programlama","web gelistirme","mobil uygulamalar"]
 }
 # Create your views here.
 # eklenen metodlar view olarak adlandırılıyoru
