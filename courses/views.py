@@ -4,16 +4,16 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 
-data ={
-    'programlama': "programlama kategorisinde ait kurs listesi",
-    'web-gelistirme': "web gelistirme kategorisinde ait kurs listesi",
-    'mobil': "mobil kategorisinde ait kurs listesi",
-    '.Net': ".Net kategorisinde ait kurs listesi",
-    'R': "R kategorisinde ait kurs listesi",
-}
+# data ={
+#     'programlama': "programlama kategorisinde ait kurs listesi",
+#     'web-gelistirme': "web gelistirme kategorisinde ait kurs listesi",
+#     'mobil': "mobil kategorisinde ait kurs listesi",
+#     '.Net': ".Net kategorisinde ait kurs listesi",
+#     'R': "R kategorisinde ait kurs listesi",
+# }
 
 db = {
-    'courses' : [
+    'courses' :[
         {"title": "javascript kursu",
          "description": "javascript kurs aciklaması",
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
@@ -33,21 +33,28 @@ db = {
          {"title": "web gelistirme kursu",
          "description": "web gelistirme kurs aciklaması",
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/2463492_8344_3.jpg",
-         "slug":"web-gelistirme-kursu",
+         "slug":"web-gelistirme",
          "date": date(2026,1,15),
          "is-active": True             
          },
     ],
-    "categories": ["programlama","web gelistirme","mobil uygulamalar"]
+    "categories": [
+        {"id": 1, "name" : "programlama", "slug":"programlama"},
+        {"id": 2, "name" : "web gelistirme", "slug":"web-gelistirme"},
+        {"id": 3, "name" : "mobil uygulamalar", "slug":"mobil-uygulamalar"},
+    ]
 }
 # Create your views here.
 # eklenen metodlar view olarak adlandırılıyoru
 
 def index(request):
-    category_list = list(data.keys())
+   
+    kurslar = db['courses']
+    kategoriler = db['categories']
 
     return render(request,'courses/index.html',{
-        'categories': category_list
+        'categories': kategoriler,
+        'courses':kurslar
     })
 
 def details(request,kurs_adi):
