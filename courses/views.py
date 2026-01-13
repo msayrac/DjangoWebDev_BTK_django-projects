@@ -19,7 +19,8 @@ db = {
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
          "slug":"javascript-kursu",
          "date": date(2025,10,10),
-         "is-active": True     
+         "isActive": True,
+         "isUpdated": False     
          },         
 
          {"title": "python kursu",
@@ -27,7 +28,8 @@ db = {
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/1258436_2dc3_4.jpg",
          "slug":"python-kursu",
          "date": date(2025,12,10),
-         "is-active": False             
+         "isActive": False,
+         "isUpdated": False              
          },
 
          {"title": "web gelistirme kursu",
@@ -35,7 +37,8 @@ db = {
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/2463492_8344_3.jpg",
          "slug":"web-gelistirme",
          "date": date(2026,1,15),
-         "is-active": True             
+         "isActive": True,
+         "isUpdated": True              
          },
     ],
     "categories": [
@@ -48,9 +51,14 @@ db = {
 # eklenen metodlar view olarak adlandırılıyoru
 
 def index(request):
-   
-    kurslar = db['courses']
+    # list comprehension   
+    kurslar = [course for course in db['courses'] if course['isActive'] == True]
+
     kategoriler = db['categories']
+
+    # for kurs in db['courses']:
+    #     if(kurs['isActive'] ==True):
+    #         kurslar.append(kurs)
 
     return render(request,'courses/index.html',{
         'categories': kategoriler,
