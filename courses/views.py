@@ -1,16 +1,8 @@
-from datetime import date
+from datetime import date,datetime
 from django.http import HttpResponse, HttpResponseNotFound,HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-
-# data ={
-#     'programlama': "programlama kategorisinde ait kurs listesi",
-#     'web-gelistirme': "web gelistirme kategorisinde ait kurs listesi",
-#     'mobil': "mobil kategorisinde ait kurs listesi",
-#     '.Net': ".Net kategorisinde ait kurs listesi",
-#     'R': "R kategorisinde ait kurs listesi",
-# }
 
 db = {
     'courses' :[
@@ -18,7 +10,7 @@ db = {
          "description": "javascript kurs aciklaması",
          "imageUrl": "https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
          "slug":"javascript-kursu",
-         "date": date(2025,10,10),
+         "date": datetime.now(),
          "isActive": True,
          "isUpdated": False     
          },         
@@ -47,8 +39,7 @@ db = {
         {"id": 3, "name" : "mobil uygulamalar", "slug":"mobil-uygulamalar"},
     ]
 }
-# Create your views here.
-# eklenen metodlar view olarak adlandırılıyoru
+
 
 def index(request):
     # list comprehension   
