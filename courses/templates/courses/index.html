@@ -1,7 +1,15 @@
 
 {% extends 'layout.html'%}
+{% load static %}
 
-{% block page_title %}kurslar{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+{% endblock  %}
+
+{% block page_title %}
+kurslar
+{% endblock %}
+
 
 {% block content %}
 
@@ -30,6 +38,8 @@
 
 {% endblock %}
 
-
+{% block js_files %}
+    <script src="{% static 'courses/js/script.js' %}"></script>
+{% endblock  %}
 
 

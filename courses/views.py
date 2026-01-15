@@ -8,7 +8,7 @@ db = {
     'courses' :[
         {"title": "javascript kursu",
          "description": "javascript kurs aciklaması",
-         "imageUrl": "https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
+         "imageUrl": "1.jpg",
          "slug":"javascript-kursu",
          "date": datetime.now(),
          "isActive": True,
@@ -17,7 +17,7 @@ db = {
 
          {"title": "python kursu",
          "description": "python kurs aciklaması",
-         "imageUrl": "https://img-c.udemycdn.com/course/750x422/1258436_2dc3_4.jpg",
+         "imageUrl": "2.jpg",
          "slug":"python-kursu",
          "date": date(2025,12,10),
          "isActive": False,
@@ -26,7 +26,7 @@ db = {
 
          {"title": "web gelistirme kursu",
          "description": "web gelistirme kurs aciklaması",
-         "imageUrl": "https://img-c.udemycdn.com/course/750x422/2463492_8344_3.jpg",
+         "imageUrl": "3.jpg",
          "slug":"web-gelistirme",
          "date": date(2026,1,15),
          "isActive": True,
