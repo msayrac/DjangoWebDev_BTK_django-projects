@@ -2,6 +2,8 @@ from datetime import date,datetime
 from django.http import HttpResponse, HttpResponseNotFound,HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from courses.models import Course,Categoriest
+
 
 
 db = {
@@ -43,13 +45,12 @@ db = {
 
 def index(request):
     # list comprehension   
-    kurslar = [course for course in db['courses'] if course['isActive'] == True]
+    kurslar = Course.objects.filter(isActive=1)
 
-    kategoriler = db['categories']
+    kategoriler = Categoriest.objects.all()
 
-    # for kurs in db['courses']:
-    #     if(kurs['isActive'] ==True):
-    #         kurslar.append(kurs)
+    # kategoriler = db['categories']
+
 
     return render(request,'courses/index.html',{
         'categories': kategoriler,

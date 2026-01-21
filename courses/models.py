@@ -13,5 +13,19 @@ class Course(models.Model):
     def __str__(self):
         return f"{self.title} {self.date}"
 
+class Categoriest(models.Model):
+
+    id =models.IntegerField(primary_key=True)
+    name =models.TextField()
+    slug =models.TextField()
+
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    
+
+
+
 
 
