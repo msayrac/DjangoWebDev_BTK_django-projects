@@ -2,7 +2,7 @@ from datetime import date,datetime
 from django.http import HttpResponse, HttpResponseNotFound,HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from courses.models import Course,Categoriest
+from courses.models import Course,Category
 
 
 
@@ -47,10 +47,7 @@ def index(request):
     # list comprehension   
     kurslar = Course.objects.filter(isActive=1)
 
-    kategoriler = Categoriest.objects.all()
-
-    # kategoriler = db['categories']
-
+    kategoriler = Category.objects.all()
 
     return render(request,'courses/index.html',{
         'categories': kategoriler,
