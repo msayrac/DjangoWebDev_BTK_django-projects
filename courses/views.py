@@ -30,15 +30,11 @@ def getCoursesByCategory(request,slug):
 
     paginator = Paginator(kurslar, 3)
     page = request.GET.get("page",1)
-
-    courses = paginator.get_page(page)
-
-    print(paginator.count)
-    print(paginator.num_pages)
+    page_obj = paginator.page(page)
 
     return render(request, 'courses/index.html', {
         'categories': kategoriler,
-        'courses':courses,
+        'page_obj':page_obj,
         'seciliKategori':slug
     })
    
