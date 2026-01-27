@@ -65,27 +65,17 @@ def details(request,slug):
     
     
 
-def getCoursesByCategory(request,category_name):
-    try:
-        category_text = data[category_name]
-        return render(request,'courses/kurslar.html', {
-            'category': category_name,
-            'category_text': category_text
-        })
-    except:
-        return HttpResponseNotFound("<h1>yanlış kategori seçimi</h1>")
+def getCoursesByCategory(request,slug):
+    kurslar = Course.objects.filter(category__slug = slug, isActive = True)
+    kategoriler = Category.objects.all()
 
-def getCoursesByCategoryId(request,category_id):    
-    # return HttpResponseRedirect('/kurs/kategori/programlama')
-    category_list = list(data.keys())
-    if(category_id > len(category_list)):
-       return HttpResponseNotFound("yanlış kategori secimi")
-    else:
-        category_name = category_list[category_id -1]
+    return render(request, 'courses/index.html', {
+        'categories': kategoriler,
+        'courses':kurslar,
+        'seciliKategori': slug
+    })
+   
 
-        redirect_url = reverse('courses_by_category',args=[category_name])
-
-        return redirect(redirect_url) # short cut method instead of HttpResponseRedirect we use redirect
 
     
 
