@@ -3,50 +3,11 @@ from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from courses.models import Course,Category
-
-
-
-db = {
-    'courses' :[
-        {"title": "javascript kursu",
-         "description": "javascript kurs aciklaması",
-         "imageUrl": "1.jpg",
-         "slug":"javascript-kursu",
-         "date": datetime.now(),
-         "isActive": True,
-         "isUpdated": False     
-         },         
-
-         {"title": "python kursu",
-         "description": "python kurs aciklaması",
-         "imageUrl": "2.jpg",
-         "slug":"python-kursu",
-         "date": date(2025,12,10),
-         "isActive": False,
-         "isUpdated": False              
-         },
-
-         {"title": "web gelistirme kursu",
-         "description": "web gelistirme kurs aciklaması",
-         "imageUrl": "3.jpg",
-         "slug":"web-gelistirme",
-         "date": date(2026,1,15),
-         "isActive": True,
-         "isUpdated": True              
-         },
-    ],
-    "categories": [
-        {"id": 1, "name" : "programlama", "slug":"programlama"},
-        {"id": 2, "name" : "web gelistirme", "slug":"web-gelistirme"},
-        {"id": 3, "name" : "mobil uygulamalar", "slug":"mobil-uygulamalar"},
-    ]
-}
+from django.core.paginator import Paginator
 
 
 def index(request):
-    # list comprehension   
     kurslar = Course.objects.filter(isActive=1)
-
     kategoriler = Category.objects.all()
 
     return render(request,'courses/index.html',{
@@ -55,9 +16,7 @@ def index(request):
     })
 
 def details(request,slug):
-
-    course = get_object_or_404(Course,slug=slug)
-    
+    course = get_object_or_404(Course,slug=slug)    
     context = {
             'course':course        
         }
@@ -66,13 +25,21 @@ def details(request,slug):
     
 
 def getCoursesByCategory(request,slug):
-    kurslar = Course.objects.filter(category__slug = slug, isActive = True)
+    kurslar = Course.objects.filter(categories__slug = slug, isActive = True).order_by("date")
     kategoriler = Category.objects.all()
+
+    paginator = Paginator(kurslar, 3)
+    page = request.GET.get("page",1)
+
+    courses = paginator.get_page(page)
+
+    print(paginator.count)
+    print(paginator.num_pages)
 
     return render(request, 'courses/index.html', {
         'categories': kategoriler,
-        'courses':kurslar,
-        'seciliKategori': slug
+        'courses':courses,
+        'seciliKategori':slug
     })
    
 
