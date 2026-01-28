@@ -34,6 +34,9 @@ def search(request):
     })
 
 
+def create_course(request):    
+    return render(request,"courses/create-course.html")
+
 
 
 
