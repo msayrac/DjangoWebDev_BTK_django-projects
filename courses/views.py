@@ -38,6 +38,26 @@ def create_course(request):
     return render(request,"courses/create-course.html")
 
 
+def create_course2(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        description = request.POST["description"]
+        imageUrl = request.POST["imageUrl"]
+        slug = request.POST["slug"]
+        isActive = request.get("isActive",False)
+        isHome = request.get("isHome",False)
+
+        if isActive == "on":
+            isActive = True
+
+        if isHome == "on":
+            isHome = True
+        
+        kurs = Course(title = title, description = description, imageUrl = imageUrl, slug=slug, isActive=isActive, isHome=isHome)
+        kurs.save()
+
+        return redirect("/kurslar")
+    return render(request,"courses/create-course.html")
 
 
 def details(request,slug):
