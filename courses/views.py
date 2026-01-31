@@ -34,6 +34,18 @@ def search(request):
 
 
 def create_course(request):
+    if request.method == "POST":
+        form = CourseCreateForm(request.POST)
+
+        if form.is_valid():
+            kurs = Course(
+                title=form.cleaned_data["title"],
+                description=form.cleaned_data["description"],
+                imageUrl=form.cleaned_data["imageUrl"],
+                slug= form.cleaned_data["slug"])
+            kurs.save()
+            return redirect("/kurslar")
+
     form = CourseCreateForm()
 
     return render(request,"courses/create-course.html", {"form": form})
